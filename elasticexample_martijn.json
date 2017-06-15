@@ -1,0 +1,7 @@
+{ 
+  "uri": "http://viaf.org/3",
+  "name": ["martijn", "Martyn"],
+  "birthplace": ["Rotterdam", "Hillegom"],
+  "birthDate": ["1986-01-03", "1982-01-03"],
+  "source": ["dataSet3", "dataSet2"]
+}

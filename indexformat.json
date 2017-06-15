@@ -1,0 +1,23 @@
+{
+  "mappings": {
+    "person": {
+      "properties": {
+        "birthDate": {
+          "type": "date"
+        },
+        "name": {
+          "type": "text"
+        },
+        "birthplace": {
+          "type": "text"
+        },
+        "source": {
+          "type": "text"
+        },
+        "uri": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
