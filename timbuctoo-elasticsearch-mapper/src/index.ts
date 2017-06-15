@@ -21,3 +21,7 @@ client.search({
 }).then(function(response: any){
   console.log(JSON.stringify(response.hits.hits));
 });
+
+interface DataFetcher {
+  getData()
+}
