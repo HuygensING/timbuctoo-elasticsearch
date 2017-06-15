@@ -1,0 +1,267 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2017-06-15T10:34:21.496Z",
+	"__export_source": "insomnia.desktop.app:v5.2.0",
+	"resources": [
+		{
+			"_id": "wrk_1bcea85e583b4162a84935bb1b0f9278",
+			"parentId": null,
+			"modified": 1497522830165,
+			"created": 1497522830165,
+			"name": "timbuctoo-elasticsearch",
+			"description": "",
+			"certificates": [],
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_21a754b639894535b5a4dcb6598d3538",
+			"parentId": "wrk_1bcea85e583b4162a84935bb1b0f9278",
+			"modified": 1497522830195,
+			"created": 1497522830195,
+			"name": "Base Environment",
+			"data": {},
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_0852891bbb4e4cbf9c477ac368d5cf49",
+			"parentId": "wrk_1bcea85e583b4162a84935bb1b0f9278",
+			"modified": 1497522830197,
+			"created": 1497522830197,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"parentId": "wrk_1bcea85e583b4162a84935bb1b0f9278",
+			"modified": 1497522830199,
+			"created": 1497522830199,
+			"name": "timbuctoo-elasticsearch",
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1497512268399,
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_173a304775bc4150926af2fc072d6579",
+			"parentId": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"modified": 1497522830203,
+			"created": 1497522830203,
+			"url": "http://localhost:9200/hpp/_search?q=source:dataSet2",
+			"name": "elasticsearch query",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_eef06b5418fe4422a5b44dce6b7c8ae5"
+				}
+			],
+			"authentication": {
+				"type": "basic",
+				"username": "elastic",
+				"password": "changeme",
+				"disabled": false
+			},
+			"metaSortKey": -1497451701608,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_6230ca0cd955413c8330c2a1dd5f199d",
+			"parentId": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"modified": 1497522830214,
+			"created": 1497522830214,
+			"url": "http://localhost:9200/hpp/person",
+			"name": "add data",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{ \n  \"uri\": \"http://viaf.org/3\",\n  \"name\": [\"martijn\", \"Martyn\"],\n  \"birthplace\": [\"Rotterdam\", \"Hillegom\"],\n  \"birthDate\": [\"1986-01-03\", \"1982-01-03\"],\n  \"source\": [\"dataSet3\", \"dataSet2\"]\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_851c2cfe7bb14e37a282f98f997e3ba3"
+				}
+			],
+			"authentication": {
+				"type": "basic",
+				"username": "elastic",
+				"password": "changeme",
+				"disabled": false
+			},
+			"metaSortKey": -1497451701508,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_81ac5a2f343a44f48df9f33e2cb63a7d",
+			"parentId": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"modified": 1497522830218,
+			"created": 1497522830218,
+			"url": "http://localhost:9200/hpp/",
+			"name": "delete index",
+			"description": "",
+			"method": "DELETE",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "basic",
+				"username": "elastic",
+				"password": "changeme",
+				"disabled": false
+			},
+			"metaSortKey": -1497451701533,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_0c7bbd550eb24340941d279d7e2a8994",
+			"parentId": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"modified": 1497522830221,
+			"created": 1497522830221,
+			"url": "http://localhost:9200/hpp/",
+			"name": "get index data",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "basic",
+				"username": "elastic",
+				"password": "changeme",
+				"disabled": false
+			},
+			"metaSortKey": -1497451701558,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_b73248f5d2804cbcafcfb6f9221dc70c",
+			"parentId": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"modified": 1497522830227,
+			"created": 1497522830227,
+			"url": "http://localhost:9200/_bulk",
+			"name": "bulk",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/x-ndjson",
+				"text": "{ \"create\" : { \"_index\" : \"hpp\", \"_type\" : \"person\", \"_id\" : \"1\" } }\n{ \"uri\": \"http://viaf.org/3\", \"name\": [\"martijn\", \"Martyn\"], \"birthplace\": [\"Rotterdam\", \"Hillegom\"], \"birthdate\": [\"1986-01-03\", \"1982-01-03\"], \"source\": [\"dataSet3\", \"dataSet2\"] }\n{ \"create\" : { \"_index\" : \"hpp\", \"_type\" : \"person\", \"_id\" : \"2\" } }\n{ \"uri\": \"http://viaf.org/2\", \"name\": [\"jauco\"], \"birthplace\": [\"moordrecht\"], \"birthDate\": [\"1982-11-12\"], \"source\": [\"dataSet1\", \"dataSet2\"] }"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/x-ndjson",
+					"id": "pair_b37b0fed42c54b9db3f47b9224f49e50"
+				}
+			],
+			"authentication": {
+				"type": "basic",
+				"username": "elastic",
+				"password": "changeme",
+				"disabled": false
+			},
+			"metaSortKey": -1497451701679.875,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_032178fe01974d0abe8bdc8c04177b94",
+			"parentId": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"modified": 1497522830231,
+			"created": 1497522830231,
+			"url": "http://localhost:9200/hpp",
+			"name": "create type",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"mappings\": {\n    \"person\": {\n      \"properties\": {\n        \"birthDate\": {\n          \"type\": \"date\"\n        },\n        \"name\": {\n          \"type\": \"text\"\n        },\n        \"birthplace\": {\n          \"type\": \"text\"\n        },\n        \"source\": {\n          \"type\": \"text\"\n        },\n        \"uri\": {\n          \"type\": \"text\"\n        }\n      }\n    }\n  }\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_1f91c8528449479895530dacae2d71a1"
+				}
+			],
+			"authentication": {
+				"type": "basic",
+				"username": "elastic",
+				"password": "changeme",
+				"disabled": false
+			},
+			"metaSortKey": -1497451701729.875,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_76b9c6c36f8e47d2a5dd91ea42df769e",
+			"parentId": "fld_2f90c4049dc940968ae7c68df12858a9",
+			"modified": 1497522830235,
+			"created": 1497522830235,
+			"url": "http://localhost:9200/hpp/_search",
+			"name": "elasticsearch date query",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n    \"query\": {\n        \"range\" : {\n            \"birthDate\" : {\n                \"gte\" : \"1982-01-01\",\n                \"lt\" :  \"1982-12-31\"\n            }\n        }\n    }\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_eef06b5418fe4422a5b44dce6b7c8ae5"
+				}
+			],
+			"authentication": {
+				"type": "basic",
+				"username": "elastic",
+				"password": "changeme",
+				"disabled": false
+			},
+			"metaSortKey": -1497451701583,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		}
+	]
+}
