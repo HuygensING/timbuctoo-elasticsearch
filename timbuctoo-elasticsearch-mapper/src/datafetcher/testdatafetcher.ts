@@ -12,13 +12,13 @@ export class TestDataFetcher implements DataFetcher {
               "items": [
                 {
                   "name": "jauco",
-                  "birthplace": "moordrecht",
+                  "birthPlace": "moordrecht",
                   "birthDate": "1982-11-12",
                   "source": "dataSet1"
                 },
                 {
                   "name": "jacco",
-                  "birthplace": "moordrecht",
+                  "birthPlace": "moordrecht",
                   "birthDate": "1982-11-12",
                   "source": "dataSet2"
                 }
@@ -31,13 +31,13 @@ export class TestDataFetcher implements DataFetcher {
               "items": [
                 {
                   "name": "martijn",
-                  "birthplace": "Rotterdam",
+                  "birthPlace": "Rotterdam",
                   "birthDate": "1986-01-03",
                   "source": "dataSet3"
                 },
                 {
                   "name": "Martyn",
-                  "birthplace": "Hillegom",
+                  "birthPlace": "Hillegom",
                   "birthDate": "1982-01-03",
                   "source": "dataSet2"
                 }

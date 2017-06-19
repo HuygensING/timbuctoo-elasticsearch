@@ -9,10 +9,17 @@ const client = new elasticsearch.Client({
 });
 
 const dataFetcher = new TestDataFetcher();
+const indexName:string = "hpp";
 
-const updater = new ElasticSearchUpdater(dataFetcher, client);
+const updater = new ElasticSearchUpdater(dataFetcher, client, indexName);
 
-updater.update("person");
+updater.update("person")
+// .then(response => 
+//   client.indices.delete({
+//     index: indexName
+//   })
+// );
+
 
 // client.search({
 //   index: "hpp",
