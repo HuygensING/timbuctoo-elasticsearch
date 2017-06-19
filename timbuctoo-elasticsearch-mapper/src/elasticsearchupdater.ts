@@ -1,7 +1,7 @@
 import { Data, DataFetcher } from "./datafetcher/datafetcher";
 import { Client } from "elasticsearch";
 import { MappingCreator } from "./elasticsearch/mappingcreator";
-import { getUnique } from "./propertyhelper"
+import { uniqueScalarPropertyNames } from "./propertyhelper"
 
 export class ElasticSearchUpdater {
   private mappingCreator: MappingCreator;
@@ -30,8 +30,7 @@ export class ElasticSearchUpdater {
           let body = {}
           body["uri"] = item.uri;
 
-          const properties = [].concat.apply([], item.owl_sameAs.items.map(sameAs => Object.keys(sameAs)));
-          const uniqueProperties = getUnique(properties);
+          const uniqueProperties = uniqueScalarPropertyNames(item.owl_sameAs);
 
           uniqueProperties.forEach(prop => {
             body[prop] = item.owl_sameAs.items.map(sameAs => sameAs[prop]);

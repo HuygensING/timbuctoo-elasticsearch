@@ -38,7 +38,7 @@ function getPropertiesOfArray(key: string, data: any[]): string[] {
   return properties;
 }
 
-export function getUnique(array: string[]): string[] {
+function getUnique(array: string[]): string[] {
   var uniqueProperties = new Array<string>();
   array.forEach(item => {
     if (uniqueProperties.indexOf(item) === -1) {
