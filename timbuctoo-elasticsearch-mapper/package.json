@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/elasticsearch": "^5.0.13",
     "@types/node": "^7.0.31",
     "elasticsearch": "^13.1.1",
     "nodemon": "^1.11.0",
