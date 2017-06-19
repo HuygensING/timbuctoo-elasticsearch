@@ -22,19 +22,12 @@ export class ElasticSearchUpdater {
         return this.elasticsearchClient.indices.create({
           index: this.indexName,
         })
-      } 
+      }
     }).then(response => {
       const data = this.dataFetcher.fetchData().data.items;
       return this.mappingCreator.createMapping(data, collection).then(response => {
         data.forEach(item => {
-          let body = {}
-          body["uri"] = item.uri;
-
-          const uniqueProperties = uniqueScalarPropertyNames(item.owl_sameAs);
-
-          uniqueProperties.forEach(prop => {
-            body[prop] = item.owl_sameAs.items.map(sameAs => sameAs[prop]);
-          });
+          let body = this.documentToIndex(item);
 
           this.elasticsearchClient.index({
             index: this.indexName,
@@ -44,5 +37,27 @@ export class ElasticSearchUpdater {
         });
       });
     });
+  }
+  private documentToIndex(data: {}): {} {
+    let body = {}
+
+    if (data.hasOwnProperty("owl_sameAs")) {
+      if (data.hasOwnProperty("uri")) {
+        body["uri"] = data["uri"];
+      }
+      const uniqueProperties = uniqueScalarPropertyNames(data["owl_sameAs"]);
+
+      uniqueProperties.forEach(prop => {
+        body[prop] = data["owl_sameAs"].items.map(sameAs => sameAs[prop]);
+      });
+    }
+    else {
+      const uniqueProperties = uniqueScalarPropertyNames(data);
+
+      uniqueProperties.forEach(prop => {
+        body[prop] = data[prop];
+      });
+    }
+    return body;
   }
 }
