@@ -14,11 +14,11 @@ const indexName:string = "hpp";
 const updater = new ElasticSearchUpdater(dataFetcher, client, indexName);
 
 updater.update("person")
-// .then(response => 
-//   client.indices.delete({
-//     index: indexName
-//   })
-// );
+.then(response => 
+  client.indices.delete({
+    index: indexName
+  })
+);
 
 
 // client.search({
