@@ -2,7 +2,6 @@ import * as elasticsearch from "elasticsearch";
 // import { TestDataFetcher } from "./datafetcher/testdatafetcher";
 import { PersonDataFetcher } from "./datafetcher/persondatafetcher";
 import { ElasticSearchUpdater } from "./elasticsearchupdater";
-import * as edtf from "edtf";
 
 const client = new elasticsearch.Client({
   hosts: [
