@@ -1,6 +1,8 @@
 import * as elasticsearch from "elasticsearch";
-import {TestDataFetcher} from "./datafetcher/testdatafetcher";
-import {ElasticSearchUpdater} from "./elasticsearchupdater";
+// import { TestDataFetcher } from "./datafetcher/testdatafetcher";
+import { PersonDataFetcher } from "./datafetcher/persondatafetcher";
+import { ElasticSearchUpdater } from "./elasticsearchupdater";
+import * as edtf from "edtf";
 
 const client = new elasticsearch.Client({
   hosts: [
@@ -8,18 +10,18 @@ const client = new elasticsearch.Client({
   ]
 });
 
-const dataFetcher = new TestDataFetcher();
-const indexName:string = "hpp";
+const dataFetcher = new PersonDataFetcher();
+const indexName: string = "hpp";
 
 const updater = new ElasticSearchUpdater(dataFetcher, client, indexName);
 
 updater.update("person")
-.then(response => 
-  client.indices.delete({
-    index: indexName
-  })
-);
-
+.then(undefined, e => console.log(e))
+  // .then(response =>
+  //   client.indices.delete({
+  //     index: indexName
+  //   })
+  // );
 
 // client.search({
 //   index: "hpp",

@@ -3,14 +3,16 @@ export function uniqueScalarPropertyNames(data: {}): string[] {
 
   Object.keys(data).forEach(key => {
     let prop = data[key];
-    if (isScalarProperty(prop) || typeof prop !== 'object') {
-      properties.push(key);
-    }
-    else if (Array.isArray(prop)) {
-      properties = concat(properties, getPropertiesOfArray(key, prop));
-    }
-    else if (typeof prop === 'object') {
-      properties = concat(properties, uniqueScalarPropertyNames(prop));
+    if (prop != null) {
+      if (isScalarProperty(prop) || typeof prop !== 'object') {
+        properties.push(key);
+      }
+      else if (Array.isArray(prop)) {
+        properties = concat(properties, getPropertiesOfArray(key, prop));
+      }
+      else if (typeof prop === 'object') {
+        properties = concat(properties, uniqueScalarPropertyNames(prop));
+      }
     }
   });
 

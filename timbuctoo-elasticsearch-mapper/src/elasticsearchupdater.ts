@@ -1,4 +1,4 @@
-import { Data, DataFetcher } from "./datafetcher/datafetcher";
+import { Data, DataFetcher, DataItem } from "./datafetcher/datafetcher";
 import { Client } from "elasticsearch";
 import { MappingCreator } from "./elasticsearch/mappingcreator";
 import { uniqueScalarPropertyNames } from "./propertyhelper"
@@ -23,41 +23,47 @@ export class ElasticSearchUpdater {
           index: this.indexName,
         })
       }
-    }).then(response => {
-      const data = this.dataFetcher.fetchData().data.items;
-      return this.mappingCreator.createMapping(data, collection).then(response => {
-        data.forEach(item => {
-          let body = this.documentToIndex(item);
-
-          this.elasticsearchClient.index({
+    }).then(async (response) => {
+      const data = await this.dataFetcher.fetchData();
+      await this.mappingCreator.createMapping(data.data.items, collection);
+      let retVal;
+      for (const item of data.data["timdata_NDE_HPP_viafList"].items) {
+        // let body = this.documentToIndex(item);
+        try {
+          await this.elasticsearchClient.index({
             index: this.indexName,
             type: collection,
-            body: body
+            body: item
           });
-        });
-      });
+        } catch (e) {
+          console.log(e, JSON.stringify(item, undefined, 2));
+        }
+      }
     });
   }
-  private documentToIndex(data: {}): {} {
+  private documentToIndex(data: DataItem): {} {
     let body = {}
 
-    if (data.hasOwnProperty("owl_sameAs")) {
-      if (data.hasOwnProperty("uri")) {
-        body["uri"] = data["uri"];
+    if (data.hasOwnProperty("uri")) {
+      body["uri"] = data["uri"];
+    }
+
+    
+    const uniqueProperties = uniqueScalarPropertyNames(data.owl_sameAs_inverse);
+    // console.log("unique properties: ", uniqueProperties);
+    uniqueProperties.forEach(prop => {
+      body[prop] = [];
+    })
+
+    data.owl_sameAs_inverse.items.forEach(item => {
+      for (let property in item) {
+        if (item.hasOwnProperty(property) && item[property] != null && body.hasOwnProperty(property)) {
+          body[property].push(item[property].value);
+        }
       }
-      const uniqueProperties = uniqueScalarPropertyNames(data["owl_sameAs"]);
+    });
 
-      uniqueProperties.forEach(prop => {
-        body[prop] = data["owl_sameAs"].items.map(sameAs => sameAs[prop]);
-      });
-    }
-    else {
-      const uniqueProperties = uniqueScalarPropertyNames(data);
 
-      uniqueProperties.forEach(prop => {
-        body[prop] = data[prop];
-      });
-    }
     return body;
   }
 }

@@ -2,50 +2,76 @@ import { Data, DataFetcher } from "./datafetcher";
 
 export class TestDataFetcher implements DataFetcher {
 
-  public fetchData(): Data {
-    return {
+  public fetchData(): Promise<Data> {
+    const val: Data = {
       "data": {
-        "items": [
-          {
-            "uri": "http://viaf.org/2",
-            "owl_sameAs": {
-              "items": [
-                {
-                  "name": "jauco",
-                  "birthPlace": "moordrecht",
-                  "birthDate": "1982-11-12",
-                  "source": "dataSet1"
-                },
-                {
-                  "name": "jacco",
-                  "birthPlace": "moordrecht",
-                  "birthDate": "1982-11-12",
-                  "source": "dataSet2"
-                }
-              ]
+        "timdata_NDE_HPP_viafList": {
+          "items": [
+            {
+              "uri": "http://viaf.org/viaf/110384864",
+              "owl_sameAs_inverse": {
+                "items": [
+                  {
+                    "schema_givenName": null,
+                    "schema_familyName": {
+                      "type": "http://www.w3.org/2001/XMLSchema#string",
+                      "value": "Schermerhorn"
+                    },
+                    "tim_dataSetName": {
+                      "type": "http://www.w3.org/2001/XMLSchema#string",
+                      "value": "Delftse hoogleraren"
+                    },
+                    "tim_postposition": null,
+                    "schema_deathDate": {
+                      "type": "https://www.loc.gov/standards/datetime/pre-submission.html",
+                      "value": "1977-03-10"
+                    },
+                    "schema_birthDate": {
+                      "type": "https://www.loc.gov/standards/datetime/pre-submission.html",
+                      "value": "1927"
+                    },
+                    "schema_birthPlace": {
+                      "schema_name": {
+                        "type": "http://www.w3.org/2001/XMLSchema#string",
+                        "value": "Akersloot"
+                      }
+                    },
+                    "schema_deathPlace": {
+                      "schema_name": {
+                        "type": "http://www.w3.org/2001/XMLSchema#string",
+                        "value": "Haarlem"
+                      }
+                    }
+                  }
+                ]
+              }
+            }, {
+              "uri": "http://viaf.org/viaf/110498163",
+              "owl_sameAs_inverse": {
+                "items": [
+                  {
+                    "schema_givenName": null,
+                    "schema_familyName": {
+                      "type": "http://www.w3.org/2001/XMLSchema#string",
+                      "value": "Vreugdenhil"
+                    },
+                    "tim_dataSetName": {
+                      "type": "http://www.w3.org/2001/XMLSchema#string",
+                      "value": "Delftse hoogleraren"
+                    },
+                    "tim_postposition": null,
+                    "schema_deathDate": null,
+                    "schema_birthDate": null,
+                    "schema_birthPlace": null,
+                    "schema_deathPlace": null
+                  }
+                ]
+              }
             }
-          },
-          {
-            "uri": "http://viaf.org/3",
-            "owl_sameAs": {
-              "items": [
-                {
-                  "name": "martijn",
-                  "birthPlace": "Rotterdam",
-                  "birthDate": "1986-01-03",
-                  "source": "dataSet3"
-                },
-                {
-                  "name": "Martyn",
-                  "birthPlace": "Hillegom",
-                  "birthDate": "1982-01-03",
-                  "source": "dataSet2"
-                }
-              ]
-            }
-          }
-        ]
+          ]
+        }
       }
-    }
+    };
+    return Promise.resolve(val);
   }
 }
