@@ -1,5 +1,5 @@
 export interface DataFetcher {
-  fetchData(): Promise<Data>;
+  fetchData(cursor?: string): Promise<Data>;
 }
 
 export interface DataItem {
@@ -27,6 +27,7 @@ export interface DataItem {
 export interface Data {
   "data": {
     [key: string]: {
+      "nextCursor": string
       "items":DataItem[]
     }
   }

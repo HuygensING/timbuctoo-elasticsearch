@@ -24,11 +24,18 @@ export class ElasticSearchUpdater {
           index: this.indexName,
         })
       }
+    }).then(response => {
+      return this.mappingCreator.createMapping(null, collection);
     }).then(async (response) => {
-      const data = await this.dataFetcher.fetchData();
-      await this.mappingCreator.createMapping(data.data.items, collection);
-      let retVal;
-      for (const item of data.data["timdata_NDE_HPP_viafList"].items) {
+      return this.indexData(collection);
+    });
+  }
+
+  private async indexData(collection: string, cursor?: string): Promise<void> {
+    console.log("indexData: ", cursor);
+    return this.dataFetcher.fetchData(cursor).then(async data => {
+      let realData = data.data["timdata_NDE_HPP_viafList"];
+      for (const item of realData.items) {
         for (const owl of item.owl_sameAs_inverse.items) {
           if (owl.schema_birthDate != null && owl.schema_birthDate.value != null) {
             owl.schema_birthDate.value = this.convertEdtfToDateArray(owl.schema_birthDate);
@@ -47,6 +54,11 @@ export class ElasticSearchUpdater {
         } catch (e) {
           console.log(e, JSON.stringify(item, undefined, 2));
         }
+      }
+      return realData.nextCursor;
+    }).then( async next => {
+      if(next != null && next !== "") {
+        return await this.indexData(collection, next);
       }
     });
   }
